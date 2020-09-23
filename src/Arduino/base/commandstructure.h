@@ -12,18 +12,8 @@
 #ifndef _COMMAND_STRUCTURE_H
 	#define _COMMAND_STRUCTURE_H
 
-/*
-*	Viene definito unicamente per includere il typo byte
-*	all'interno del progetto poichè non è presente
-*	nativamente.
-*/
-#define LOCAL_DEBUG
-#ifdef LOCAL_DEBUG
-	typedef unsigned char byte;
-#endif
-
 struct command {
-	byte code;
+	uint8_t code;
 	const char* description;
 };
 

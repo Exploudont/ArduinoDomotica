@@ -1,13 +1,22 @@
+#icnlude "base/condizionatore.h"
+#icnlude "base/radiomodule.h"
 #include "splitter.h"
-#include <stdio.h>
 
-void ShowMenu(){
-	for(int i=0; i<NUM_COMMANDS; i++)
-		printf("%u - %s\n", commands[i].code, commands[i].description);
+
+void setup(){
+	// inizializzazione modulo 
+	// per la comunicazione via radio
+	initRadio();	
 }
 
-int main(){
-	ShowMenu();
-	
-	return 0;
+
+void loop(){
+	// variabili di supporto per la ricezione
+	// via radio.
+	uint8_t buffer[VW_MAX_MESSAGE_LEN];
+	uint8_t buflen = VW_MAX_MESSAGE_LEN;
+
+	if (vw_get_message(buffer, &buflen)){
+		analyzeCommands(buffer);
+	}
 }

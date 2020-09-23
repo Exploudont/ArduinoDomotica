@@ -26,13 +26,15 @@ void initRadio();
 
 /*
 *	Trasmette i dati via radio, senza necessita' di definire la lunghezza dei dati da inviare.
+*	Viene utilizzata una MACRO.
 */
-void send(uint8_t * data);
+#define send(data) vw_send(data, sizeof(data));vw_wait_tx();
 
 /*
 *	Trasmette i dati via radio, definendo la lunghezza dei dati da inviare.
+*	Viene utilizzata una MACRO.
 */
-void send(uint8_t * data, uint8_t length);
+#define send(data, length) vw_send(data, length);vw_wait_tx();
 
 
 #endif
